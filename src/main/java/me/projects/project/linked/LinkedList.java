@@ -4,10 +4,13 @@ package me.projects.project.linked;
  *
  * @author hrachyay
  */
-public class List {
+public class LinkedList {
     private Node head = null;
 
-    public List(Node head) {
+    public LinkedList() {
+    }
+
+    public LinkedList(Node head) {
         this.head = head;
     }
 
@@ -56,5 +59,32 @@ public class List {
         
         Node node = new Node(value, tmp.getNext());
         tmp.setNext(node);
+    }
+    
+    public void print(){
+        Node tmp = this.getHead();
+        while(tmp != null){
+            System.out.println(tmp.getValue());
+            tmp = tmp.getNext();
+        }
+    }
+    
+    public void reverse(){
+        if (this.isEmpty()) {
+            return;
+        }
+        
+        Node prev = null;
+        Node current = this.getHead();
+        Node next = null;
+        
+        while (current != null) {
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = next;
+        }
+        
+        head = prev;
     }
 }
